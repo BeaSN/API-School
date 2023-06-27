@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <meta charset="UTF-8">
+  <title>Seja bem vindo(a)!</title>
+  <link rel="stylesheet" href="/assets/signup.css" type="text/css">
+  <script src="/assets/main.js"></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab&display=swap">
+
+</head>
+<body>
+<header>
+  <div class="container">
+    <img src="https://img.freepik.com/vetores-gratis/ilustracao-de-chapeu-graduacao_53876-5920.jpg?w=740&t=st=1686900060~exp=1686900660~hmac=09d89d09f2769f8cf1709f447d93febaa97e20175906d68bf4b292a31b35e2a1" class="capelo" alt="capelo">
+    <div class="title"><h1>API SCHOOL</h1></div>
+  </div>
+</header>
+
+<main>
+  <%= form_with url: "school/v1/students/create", id: "signup-form" do |f|  %>
+  <div class="signup">
+    <label for="name">Name: </label>
+    <%= f.text_field :name, id: "name", require: true %>
+
+    <label for="email">Email: </label>
+    <%= f.email_field :email, id: "email" %>
+
+    <label for="password">Password: </label>
+    <%= f.password_field :password, id: "password" %>
+  </div>
+  <div class="right_colunmm"></div>
+    <%= f.submit "Sign Up", class: "button_submit" %>
+    <a href="/index">
+      <button type="submit">I already have an account</button>
+    </a>
+  <% end %>
+</main>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.23.0/axios.min.js"></script>
+<script src="/assets/main.js"></script>
+
+
+<footer>
+  <div class="baseboard">
+    <p>&copy; 2023 ByBeatriz. Todos os direitos reservados.</p>
+
+    <!-- Conteúdo do rodapé, como informações de contato ou links -->
+  </div>
+</footer>
+</body>
+</html>

@@ -3,12 +3,15 @@ class SessionsController < ApplicationController
   end
 
   def signup
-    student = Student.new(user_params)
+    @student = Student.new
+  end
 
-    if student.save
-      token = encode_token(user_id: student.id) # Codifique um token JWT com o ID do usuário
+  def create
+    byebug
+    student = Student.new()
 
-      render json: { token: token }, status: :created
+    if @student.save
+      render 'sessions/signup', locals: @student
     else
       render json: { errors: user.errors.full_messages }, status: :unprocessable_entity
     end
@@ -18,9 +21,7 @@ class SessionsController < ApplicationController
     student = Student.find_by(email: params[:email]) # Encontre o usuário pelo email
 
     if student&.authenticate(params[:password]) # Verifique a autenticação do usuário
-      token = encode_token(user_id: student.id) # Codifique um token JWT com o ID do usuário
-
-      render json: { token: token } # Retorne o token JWT para o cliente
+      render home_path
     else
       render json: { error: "Credenciais inválidas" }, status: :unauthorized
     end

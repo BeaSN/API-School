@@ -1,7 +1,7 @@
 class StudentService
   class << self
     def create_student(params)
-      student = Student.create(name: params[:name], team_id: params[:team_id], email: params[:email], birthday: params[:birthday])
+      student = Student.create(name: params[:name], email: params[:email])
       School::Entities::Student.represent(student)
     end
 
