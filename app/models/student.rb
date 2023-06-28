@@ -1,4 +1,5 @@
 class Student < ApplicationRecord
+  has_secure_password
   belongs_to :team, optional: true
   has_many :quiz_attempts
 

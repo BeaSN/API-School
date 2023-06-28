@@ -5,6 +5,7 @@ class School::V1::Students < Grape::API
       requires :name, type: String
       requires :email, type: String
       requires :password, type: String
+      requires :password_confirmation, type: String
       requires :birthday, type: Date
     end
 
@@ -17,6 +18,7 @@ class School::V1::Students < Grape::API
       StudentService.create_student(params)
     end
   end
+
   resource :list do
     desc "Get Students"
     params do
