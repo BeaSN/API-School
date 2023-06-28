@@ -4,8 +4,8 @@ class School::V1::Students < Grape::API
     params do
       requires :name, type: String
       requires :email, type: String
-      optional :password, type: String
-      optional :birthday, type: Date
+      requires :password, type: String
+      requires :birthday, type: Date
     end
 
     post "", http_codes: [

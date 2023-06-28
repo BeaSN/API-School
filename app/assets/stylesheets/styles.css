@@ -51,7 +51,7 @@ body::before {
     color: #191970;
     display: inline-block;
     position: absolute;
-    z-index: 0;
+    z-index: -1;
 }
 
 input {
@@ -65,11 +65,17 @@ input {
     box-shadow: 0 2px 4px #191970;
     border-bottom: 2px solid #191970;
     transition: border-bottom-color 0.3s ease;
+    z-index: 2;
 }
 
 input:focus {
     border-bottom-color: #191970;
     outline: none;
+}
+
+.signup {
+    position: relative;
+    z-index: 2;
 }
 
 .email {

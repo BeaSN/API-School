@@ -7,11 +7,10 @@ class SessionsController < ApplicationController
   end
 
   def create
-    byebug
     student = Student.new()
 
     if @student.save
-      render 'sessions/signup', locals: @student
+      render "sessions/signup", locals: @student
     else
       render json: { errors: user.errors.full_messages }, status: :unprocessable_entity
     end
@@ -30,6 +29,6 @@ class SessionsController < ApplicationController
   private
 
   def user_params
-    params.require(:student).permit(:name, :email, :password) # Ajuste os parâmetros conforme seu modelo de usuário
+    params.require(:student).permit(:name, :email, :password, :birthday) # Ajuste os parâmetros conforme seu modelo de usuário
   end
 end

@@ -1,4 +1,4 @@
-/*document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function() {
   var loginForm = document.getElementById('login-form');
   if (loginForm) {
   loginForm.addEventListener('submit', handleLoginSubmit);
@@ -16,6 +16,7 @@ function handleLoginSubmit(event) {
   const password = document.getElementById('password').value;
 
   // Restante do código de envio da solicitação HTTP para login
+  document.getElementById('login-form').submit();
 }
 
 function handleSignupSubmit(event) {
@@ -23,8 +24,9 @@ function handleSignupSubmit(event) {
 
   const name = document.getElementById('name').value;
   const email = document.getElementById('email').value;
+  const birthday = document.getElementById('birthday').value;
   const password = document.getElementById('password').value;
 
   // Restante do código de envio da solicitação HTTP para cadastro
   document.getElementById('signup-form').submit();
-}*/
+}
