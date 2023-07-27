@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get "/signup", to: "sessions#signup"
   get "/home", to: "sessions#homepage"
 
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
