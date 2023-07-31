@@ -1,5 +1,5 @@
 class School::Entities::Quiz < Grape::Entity
   expose :name
   expose :description
-  expose :course_id
+  expose :team_id
 end

@@ -1,8 +1,9 @@
-should_institutions = true
-should_courses = true
-should_teams = true
-should_students = true
+should_institutions = false
+should_courses = false
+should_teams = false
+should_students = false
 should_quizzes = true
+should_colors = false
 
 if should_institutions
   %w[PUC Mackenzie UFSC USP].each do |name|
@@ -21,7 +22,7 @@ end
 
 if should_teams
   Course.all.each do |course|
-    ["#{course.name} A", "#{course.name} B", "#{course.name} C", "#{course.name} d"].each do |name|
+    ["#{course.name} A", "#{course.name} B", "#{course.name} C", "#{course.name} D"].each do |name|
       Team.create(name: name, course_id: course.id)
     end
   end
@@ -36,10 +37,38 @@ if should_students
 end
 
 if should_quizzes
-  Course.all.each do |course|
+  Team.all.each do |team|
     10.times do
-      Quiz.create(name: Faker::Educator.course_name, description: Faker::Lorem.sentence, course_id: course.id)
+      Quiz.create(name: Faker::Educator.course_name, description: Faker::Lorem.sentence, team_id: team.id)
     end
   end
 end
+
+if should_colors
+  institution_1 = Institution.find(1)
+  institution_1.color_1 = "#6322e7"
+  institution_1.color_2 = "#814dea"
+  institution_1.color_3 = "#9a75ec"
+  institution_1.color_4 = "#b193ec"
+  institution_1.save
+  institution_2 = Institution.find(2)
+  institution_2.color_1 = "#e35a11"
+  institution_2.color_2 = "#f57938"
+  institution_2.color_3 = "#f5905e"
+  institution_2.color_4 = "#fcac83"
+  institution_2.save
+  institution_3 = Institution.find(3)
+  institution_3.color_1 = "#06ab85"
+  institution_3.color_2 = "#3cb99d"
+  institution_3.color_3 = "#66bda8"
+  institution_3.color_4 = "#8ec4b8"
+  institution_3.save
+  institution_4 = Institution.find(4)
+  institution_4.color_1 = "#e11f3c"
+  institution_4.color_2 = "#ee3651"
+  institution_4.color_3 = "#ea677a"
+  institution_4.color_4 = "#efa3af"
+  institution_4.save
+end
+
 
