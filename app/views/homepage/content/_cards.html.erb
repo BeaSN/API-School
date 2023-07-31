@@ -1,0 +1,77 @@
+<div class="animated fadeIn">
+  <!-- Widgets  -->
+  <div class="row">
+    <div class="col-sm-6 col-lg-3">
+      <div class="card text-white bg-flat-color-1">
+        <div class="card-body d-flex justify-content-between">
+          <div class="card-left pt-1 float-left">
+            <h3 class="mb-0 fw-r">
+              <span class="currency float-left mr-1"></span>
+              <span class="date"><%= DateTime.now.strftime("%d/%m/%Y") %>
+                <br><%= DateTime.now.strftime("%A") %></span>
+            </h3>
+          </div><!-- /.card-left -->
+
+          <div class="card-right float-right text-end">
+            <i class="icon fade-5 icon-lg pe-7s-date"></i>
+          </div><!-- /.card-right -->
+        </div>
+      </div>
+    </div>
+    <!--/.col-->
+
+    <div class="col-sm-6 col-lg-3">
+      <div class="card text-white bg-flat-color-2">
+        <div class="card-body d-flex justify-content-between">
+          <div class="card-left pt-1 float-left">
+            <h3 class="mb-0 fw-r">
+              <span class="count float-left"><%= total_students %></span><br>
+            </h3>
+            <p class="text-light mt-1 m-0">Students</p>
+          </div><!-- /.card-left -->
+
+          <div class="card-right float-right text-end">
+            <i class="icon fade-5 icon-lg pe-7s-users"></i>
+          </div><!-- /.card-right -->
+        </div>
+      </div>
+    </div>
+    <!--/.col-->
+
+    <div class="col-sm-6 col-lg-3">
+      <div class="card text-white bg-flat-color-3">
+        <div class="card-body d-flex justify-content-between">
+          <div class="card-left pt-1 float-left">
+            <h3 class="mb-0 fw-r">
+              <span class="count"><%= total_quizzes %></span>
+            </h3>
+            <p class="text-light mt-1 m-0">Quizzes</p>
+          </div><!-- /.card-left -->
+
+          <div class="card-right float-right text-end">
+            <i class="icon fade-5 icon-lg pe-7s-news-paper"></i>
+          </div><!-- /.card-right -->
+        </div>
+      </div>
+    </div>
+    <!--/.col-->
+
+    <div class="col-sm-6 col-lg-3">
+      <div class="card text-white bg-flat-color-4">
+        <div class="card-body d-flex justify-content-between">
+          <div class="card-left pt-1 float-left">
+            <h3 class="mb-0 fw-r">
+              <span class="count"><%= total_institutions %></span>
+            </h3>
+            <p class="text-light mt-1 m-0">Institutions</p>
+          </div><!-- /.card-left -->
+
+          <div class="card-right float-right text-end">
+            <i class="icon fade-5 icon-lg pe-7s-culture"></i>
+          </div><!-- /.card-right -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

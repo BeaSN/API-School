@@ -1,0 +1,9 @@
+<%= render partial: "homepage/content/dashboard", locals: { total_institutions: @total_institutions,
+                                           total_courses: @total_courses,
+                                           total_teams: @total_teams,
+                                           total_students: @total_students,
+                                           total_quizzes: @total_quizzes,
+                                           total_entities: @total_entities }, formats: :html %>
+<script>
+    <%= render partial: "homepage/body", formats: :js %>
+</script>

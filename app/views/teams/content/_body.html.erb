@@ -1,0 +1,6 @@
+<h1><%= teams.first["institution"]["name"] %></h1>
+<h1><%= teams.first["course"]["name"] %></h1>
+<% teams.each do |team| %>
+  <h1><%= team["name"] %></h1>
+  <h1><%= team["students"].count %></h1>
+<% end %>

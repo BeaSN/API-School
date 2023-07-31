@@ -1,0 +1,54 @@
+<%= render partial: "homepage/content/cards", formats: :html, locals: {total_students: total_students, total_quizzes: total_quizzes, total_institutions: total_institutions} %>
+<div class="row">
+  <div class="col-lg-12">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="box-title"> API Traffic </h4>
+      </div>
+      <div class="row">
+        <div class="col-lg-8">
+          <div class="card-body">
+            <div id="traffic-chart" class="traffic-chart"></div>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="card-body">
+            <div class="progress-box progress-1">
+              <h4 class="por-title">Courses</h4>
+              <% total_courses_percent =  ((total_courses.to_f / total_entities) * 100).round(2) %>
+              <div class="por-txt"><%= total_courses %> (<%= total_courses_percent %>%)</div>
+              <div class="progress mb-2" style="height: 5px;">
+                <div class="progress-bar bg-flat-color-1 progress-bar-striped progress-bar-animated" role="progressbar" style="width: <%= total_courses_percent %>%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+            </div>
+            <div class="progress-box progress-2">
+              <h4 class="por-title">Teams</h4>
+              <% total_teams_percent =  ((total_teams.to_f / total_entities) * 100).round(2) %>
+              <div class="por-txt"><%= total_teams %> (<%= total_teams_percent %>%)</div>
+              <div class="progress mb-2" style="height: 5px;">
+                <div class="progress-bar bg-flat-color-2 progress-bar-striped progress-bar-animated" role="progressbar" style="width: <%= total_teams_percent %>%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+            </div>
+            <div class="progress-box progress-2">
+              <h4 class="por-title">Students</h4>
+              <% total_students_percent =  ((total_students.to_f / total_entities) * 100).round(2) %>
+              <div class="por-txt"><%= total_students %> (<%= total_students_percent %>%)</div>
+              <div class="progress mb-2" style="height: 5px;">
+                <div class="progress-bar bg-flat-color-3 progress-bar-striped progress-bar-animated" role="progressbar" style="width: <%= total_students_percent %>%;" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+            </div>
+            <div class="progress-box progress-2">
+              <h4 class="por-title">Quizzes</h4>
+              <% total_quizzes_percent =  ((total_quizzes.to_f / total_entities) * 100).round(2) %>
+              <div class="por-txt"><%= total_quizzes %> (<%= total_quizzes_percent %>%)</div>
+              <div class="progress mb-2" style="height: 5px;">
+                <div class="progress-bar bg-flat-color-4 progress-bar-striped progress-bar-animated" role="progressbar" style="width: <%= total_quizzes_percent %>%;" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-body"></div>
+    </div>
+  </div>
+</div>

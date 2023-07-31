@@ -19,6 +19,8 @@ gem "byebug"
 gem "rack-cors"
 gem "email_validator"
 gem "bcrypt"
+gem "faker"
+gem "faraday"
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", "~> 5.0"
 gem 'bootstrap', '~> 5.0'

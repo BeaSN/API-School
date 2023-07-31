@@ -19,6 +19,12 @@ class TeamService
       School::Entities::Team.represent(team)
     end
 
+    def get_teams_by_course_id(params)
+      teams = Course.find(params[:course_id]).teams
+      teams = teams.where("name LIKE ? OR id LIKE ?", "%#{params[:search]}%", "%#{params[:search]}%") if params[:search].present?
+
+      School::Entities::Team.represent(teams)
+    end
     def delete_team(params)
       team = Team.find(params[:id])
       team.destroy

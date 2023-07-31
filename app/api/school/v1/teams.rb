@@ -30,6 +30,22 @@ class School::V1::Teams < Grape::API
       TeamService.list(params)
     end
   end
+  resource :get_teams_by_course_id do
+    desc "Get Teams"
+    params do
+      requires :course_id, type: Integer
+      optional :search, type: String
+    end
+
+    get "", http_codes: [
+      [201, "Ok"],
+      [401, "Unauthorized"],
+      [404, "Not Found"],
+      [500, "Internal Server Error"],
+    ] do
+      TeamService.get_teams_by_course_id(params)
+    end
+  end
   resource :update do
     desc "Update Teams"
     params do
