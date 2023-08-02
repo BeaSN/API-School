@@ -1,9 +1,9 @@
-should_institutions = false
-should_courses = false
-should_teams = false
-should_students = false
+should_institutions = true
+should_courses = true
+should_teams = true
+should_students = true
 should_quizzes = true
-should_colors = false
+should_colors = true
 
 if should_institutions
   %w[PUC Mackenzie UFSC USP].each do |name|
