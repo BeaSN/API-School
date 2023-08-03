@@ -7,14 +7,14 @@ should_colors = true
 
 if should_institutions
   %w[PUC Mackenzie UFSC USP].each do |name|
-    address = "#{Faker::Address.street_address.gsub(/\d/, '')}, #{rand(1..100)} - #{Faker::Address.city}, #{Faker::Address.state}, #{Faker::Address.country}, #{Faker::Address.zip_code}"
+    address = "#{Faker::Address.street_address.gsub(/\d/, "")}, #{rand(1..100)} - #{Faker::Address.city}, #{Faker::Address.state}, #{Faker::Address.country}, #{Faker::Address.zip_code}"
     Institution.create(name: name, phone: Faker::PhoneNumber.phone_number, address: address)
   end
 end
 
 if should_courses
   Institution.all.each do |institution|
-    ['Administration', 'Civil Engineering', 'Medicine', 'Psychology', 'Computing'].each do |name|
+    ["Administration", "Civil Engineering", "Medicine", "Psychology", "Computing"].each do |name|
       Course.create(name: name, description: Faker::Lorem.sentence, institution_id: institution.id)
     end
   end
@@ -31,7 +31,7 @@ end
 if should_students
   Team.all.each do |team|
     5.times do
-      Student.create(name: "#{Faker::Name.first_name} #{Faker::Name.last_name}", email: Faker::Internet.unique.email, birthday: Faker::Date.birthday(min_age: 18, max_age: 65), team_id: team.id, password: '123456', password_confirmation: '123456')
+      Student.create(name: "#{Faker::Name.first_name} #{Faker::Name.last_name}", email: Faker::Internet.unique.email, birthday: Faker::Date.birthday(min_age: 18, max_age: 65), team_id: team.id, password: "123456", password_confirmation: "123456")
     end
   end
 end
@@ -70,5 +70,3 @@ if should_colors
   institution_4.color_4 = "#efa3af"
   institution_4.save
 end
-
-

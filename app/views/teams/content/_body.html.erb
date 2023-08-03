@@ -76,7 +76,7 @@
 </div>
 
 <div class="row mt-4">
-  <ul class="nav nav-tabs" id="myTab" role="tablist">
+  <ul class="nav nav-tabs" data-color="<%= @teams.first["institution"]["color_3"] %>" data-color-active="<%= @teams.first["institution"]["color_1"] %>" id="myTab" role="tablist">
     <% @teams.each do |team| %>
       <li class="nav-item" role="presentation">
         <a class="nav-link
