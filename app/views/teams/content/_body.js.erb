@@ -4,3 +4,9 @@ var color = tabs.data("color")
 var color_active = tabs.data("color-active")
 tabs.find(".nav-link").css("background-color", color)
 tabs.find(".nav-link.active").css("background-color", color_active)
+tabs.find(".nav-link").each(function (){
+    $(this).click(function (){
+        tabs.find(".nav-link").css("background-color", color)
+        $(this).css("background-color", color_active)
+    })
+})

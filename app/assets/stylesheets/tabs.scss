@@ -1,12 +1,20 @@
 .nav.nav-tabs {
-    
-    .nav-item {}
+  .nav-item {
+  }
 
-    .nav-link {
-       
+  .nav-link {
+    font-family: sans-serif;
+    font-size: 1.2rem;
+    color: #fafafa;
+    border-color: transparent !important;
 
-        &.active {
-           
-        }
+    &.active {
+      font-weight: bold;
+      border-color: transparent !important;
     }
+  }
+}
+
+.nav-content {
+  background: #fafafa !important;
 }

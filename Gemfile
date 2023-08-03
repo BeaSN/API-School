@@ -21,6 +21,8 @@ gem "email_validator"
 gem "bcrypt"
 gem "faker"
 gem "faraday"
+gem "sassc-rails"
+
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", "~> 5.0"
 gem 'bootstrap', '~> 5.0'
