@@ -1,4 +1,3 @@
-console.log("biaaa")
 var tabs = $(".nav.nav-tabs")
 var color = tabs.data("color")
 var color_active = tabs.data("color-active")
@@ -10,3 +9,12 @@ tabs.find(".nav-link").each(function (){
         $(this).css("background-color", color_active)
     })
 })
+var tabs_content = $(".tab-content")
+tabs_content.each(function (){
+    $(this).find(".student-widget").each(function (){
+        $(this).click(function (){
+            assyncContainer.reload();
+        })
+    })
+})
+

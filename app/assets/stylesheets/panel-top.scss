@@ -6,6 +6,26 @@
     margin-right: 25px;
 }
 
+.left-panel {
+    background: #e7eefa !important;
+    .navbar {
+        background: #e7eefa !important;
+        .navbar-nav {
+            li.active {
+                background: transparent !important;
+                a, i {
+                    font-weight: bold;
+                }
+            }
+            li.menu-item-has-children {
+                .sub-menu {
+                    background: #e7eefa !important;
+                }
+            }
+        }
+    }
+}
+
 .right-panel {
     .header {
         background: rgb(3, 3, 161) !important;

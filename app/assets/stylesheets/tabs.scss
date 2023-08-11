@@ -8,10 +8,15 @@
     font-size: 1.2rem;
     color: #fafafa;
     border-color: transparent !important;
-
+    &:hover {
+      filter: saturate(1.5);
+    }
     &.active {
       font-weight: bold;
       border-color: transparent !important;
+      &:hover {
+        filter: none;
+      }
     }
   }
 }

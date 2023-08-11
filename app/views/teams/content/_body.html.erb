@@ -106,14 +106,18 @@
                         <th>Name</th>
                         <th>Email</th>
                         <th>Birthday</th>
+                        <th class="action-col"></th>
+                        <th class="action-col"></th>
                       </tr>
                       </thead>
                       <tbody>
                       <% team["students"].each do |student| %>
-                        <tr>
+                        <tr class="student-widget row-widget" data-id="<%= student["id"] %>">
                           <td><%= student["name"] %></td>
                           <td><%= student["email"] %></td>
                           <td><%= student["birthday"].to_date.strftime("%d/%m/%Y") %></td>
+                          <td class="edit-buttom actions-buttom"><i class="icon ti-pencil-alt"></i></td>
+                          <td class="delete-buttom actions-buttom"><i class="icon ti-trash"></i></td>
                         </tr>
                       <% end %>
                       </tbody>

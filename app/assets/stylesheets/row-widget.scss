@@ -1,0 +1,17 @@
+.action-col {
+  width: 40px !important;
+}
+
+.row-widget {
+  .actions-buttom {
+    width: 40px !important;
+    text-align: center;
+    cursor: pointer;
+    &.edit-buttom:hover{
+      color: #2a62bc;
+    }
+    &.delete-buttom:hover{
+      color: #ad0312;
+    }
+  }
+}

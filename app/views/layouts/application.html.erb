@@ -137,48 +137,62 @@
   </div>
 </footer>
 <script>
+    function ContainerContent() {
+        this.data = {}
+        this.execute = function f() {
+           if (this.data.type === null){
+               $.ajax({
+                   url: this.data.type + "/index/",
+                   type: "GET",
+                   dataType: "html",
+                   beforeSend: function (){
+                       $(".dashboard_container.content").empty();
+                       $(".dashboard_container.content").html('<div class="d-flex justify-content-center"><div class="spinner-grow d-flex justify-content-between" role="status"><span class="visually-hidden">Loading...</span></div></div>')
+                   },
+                   success: function (data) {
+                       $(".dashboard_container.content").empty();
+                       $(".dashboard_container.content").append(data);
+                   },
+                   error: function (error) {
+                       console.error("Erro na chamada AJAX:", error);
+                   }
+               });
+           }else {
+               $.ajax({
+                   url: this.data.type + "/index",
+                   data: {course_id: this.data.id},
+                   type: "GET",
+                   dataType: "html",
+                   beforeSend: function (){
+                       $(".dashboard_container.content").empty();
+                       $(".dashboard_container.content").html('<div class="d-flex justify-content-center"><div class="spinner-grow d-flex justify-content-between" role="status"><span class="visually-hidden">Loading...</span></div></div>')
+                   },
+                   success: function (data) {
+                       $(".dashboard_container.content").empty();
+                       $(".dashboard_container.content").append(data)
+
+                   },
+                   error: function (error) {
+                       console.error("Erro na chamada AJAX:", error);
+                   }
+               });
+           }
+       }
+       this.reload = function () {
+           this.execute();
+       }
+
+  }
+  assyncContainer = new ContainerContent();
     $(".container_button").each(function () {
         self = $(this);
         self.click(function () {
-            type = $(this).data("type");
-            if (type == "teams") {
-                id = $(this).data("course-id");
-                $.ajax({
-                    url: type + "/index",
-                    data: {course_id: id},
-                    type: "GET",
-                    dataType: "html",
-                    beforeSend: function (){
-                        $(".dashboard_container.content").empty();
-                        $(".dashboard_container.content").html('<div class="d-flex justify-content-center"><div class="spinner-grow d-flex justify-content-between" role="status"><span class="visually-hidden">Loading...</span></div></div>')
-                    },
-                    success: function (data) {
-                        $(".dashboard_container.content").empty();
-                        $(".dashboard_container.content").append(data)
-
-                    },
-                    error: function (error) {
-                        console.error("Erro na chamada AJAX:", error);
-                    }
-                });
-            } else {
-                $.ajax({
-                    url: type + "/index/",
-                    type: "GET",
-                    dataType: "html",
-                    beforeSend: function (){
-                        $(".dashboard_container.content").empty();
-                        $(".dashboard_container.content").html('<div class="d-flex justify-content-center"><div class="spinner-grow d-flex justify-content-between" role="status"><span class="visually-hidden">Loading...</span></div></div>')
-                    },
-                    success: function (data) {
-                        $(".dashboard_container.content").empty();
-                        $(".dashboard_container.content").append(data);
-                    },
-                    error: function (error) {
-                        console.error("Erro na chamada AJAX:", error);
-                    }
-                });
+            var type = $(this).data("type");
+            assyncContainer.data.type = type;
+            if ($(this).data("course-id") !== undefined) {
+                assyncContainer.data.id = $(this).data("course-id");
             }
+            assyncContainer.execute();
         });
     });
     $(".container_button.active").trigger("click");
