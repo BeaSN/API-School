@@ -1,0 +1,36 @@
+.navbar-brand {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: aliceblue;
+    font-size: 25px;
+    margin-top: 8px;
+    margin-right: 25px;
+}
+
+.right-panel {
+    .header {
+        background: rgb(3, 3, 161) !important;
+
+        .top-left {
+            .navbar-header {
+                background: transparent !important;
+            }
+
+            .navbar-brand {
+                height: 55px;
+                width: 55px;
+                position: relative;
+                display: inline-flex;
+                justify-content: center;
+                vertical-align: middle;
+                margin: 0 !important;
+                filter: saturate(1.9) brightness(1.2);
+
+                .logo_icon {
+                    height: 100%;
+                    width: 100%;
+                
+                }
+            }
+        }
+    }
+}
