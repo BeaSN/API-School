@@ -13,8 +13,10 @@
         .navbar-nav {
             li.active {
                 background: transparent !important;
+                color: #03a9f3 !important;
                 a, i {
                     font-weight: bold;
+                    color: #03a9f3 !important;
                 }
             }
             li.menu-item-has-children {

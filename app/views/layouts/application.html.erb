@@ -22,8 +22,8 @@
   <nav class="navbar navbar-expand-sm navbar-default">
     <div id="main-menu" class="main-menu collapse navbar-collapse">
       <ul class="nav navbar-nav">
-        <li class="active container_button" data-type="homepage">
-          <a><i class="menu-icon fa fa-laptop"></i>Homepage</a>
+        <li class="menu-item-has-children container_button" data-type="homepage">
+          <a href="#"><i class="menu-icon fa fa-laptop"></i>Homepage</a>
         </li>
         <li class="menu-title">API elements</li>
         <li class="menu-item-has-children">
@@ -39,7 +39,8 @@
                     <a href="#"><i class="fa fa-angle-right"></i><%= course.name %></a>
                     <ul class="sub-menu children collapse" id="collapse<%= "#{institution.name.gsub(" ", "_")}#{course.name.gsub(" ", "_")}" %>">
                       <li class="container_button" data-type="teams" data-course-id="<%= course.id %>">
-                        <a href="" target="_self">Teams</a></li>
+                        <a href="" target="_self">Teams</a>
+                      </li>
                     </ul>
                   </li>
                 <% end %>
@@ -176,6 +177,10 @@
     $(".container_button").each(function () {
         $(this).click(function () {
             var type = $(this).data("type");
+            $(this).parent().removeClass("collapsing")
+            $(this).parent().addClass("show");
+            $(".container_button").removeClass("active")
+            $(this).addClass("active")
             assyncContainer.data.type = type;
             if ($(this).data("course-id") !== undefined) {
                 assyncContainer.data.id = $(this).data("course-id");
@@ -183,7 +188,7 @@
             assyncContainer.execute();
         });
     });
-    $(".container_button.active").trigger("click");
+    $(".container_button").first().trigger("click");
 
     toastr.options = {
         "closeButton": true,
