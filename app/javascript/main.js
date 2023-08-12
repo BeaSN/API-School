@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+/*document.addEventListener('DOMContentLoaded', function() {
   var loginForm = document.getElementById('login-form');
   if (loginForm) {
   loginForm.addEventListener('submit', handleLoginSubmit);
@@ -29,4 +29,4 @@ function handleSignupSubmit(event) {
 
   // Restante do código de envio da solicitação HTTP para cadastro
   document.getElementById('signup-form').submit();
-}
+}*/

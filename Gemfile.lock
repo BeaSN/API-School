@@ -137,6 +137,8 @@ GEM
     faraday-net_http (3.0.2)
     ffi (1.15.5)
     ffi (1.15.5-x64-mingw-ucrt)
+    font-awesome-sass (6.4.2)
+      sassc (~> 2.0)
     globalid (1.1.0)
       activesupport (>= 5.0)
     grape (1.7.1)
@@ -315,6 +317,8 @@ GEM
     thor (1.2.2)
     tilt (2.2.0)
     timeout (0.4.0)
+    toastr-rails (1.0.3)
+      railties (>= 3.1.0)
     turbo-rails (1.4.0)
       actionpack (>= 6.0.0)
       activejob (>= 6.0.0)
@@ -364,6 +368,7 @@ DEPENDENCIES
   email_validator
   faker
   faraday
+  font-awesome-sass
   grape-entity
   grape-swagger
   grape-swagger-rails
@@ -380,6 +385,7 @@ DEPENDENCIES
   sprockets-rails
   sqlite3 (~> 1.4.2)
   stimulus-rails
+  toastr-rails
   turbo-rails
   tzinfo-data
   web-console

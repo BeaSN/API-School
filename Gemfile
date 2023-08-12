@@ -23,8 +23,8 @@ gem "faker"
 gem "faraday"
 gem "sassc-rails"
 gem 'webpacker'
-
-
+gem 'font-awesome-sass'
+gem 'toastr-rails'
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", "~> 5.0"
 gem 'bootstrap', '~> 5.0'

@@ -12,20 +12,9 @@
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
 
-  <%= stylesheet_link_tag "application", media: "all", 'data-turbolinks-track': "reload" %>
-  <%= javascript_include_tag "application", 'data-turbolinks-track': "reload" %>
-
-  <script src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.4/dist/umd/popper.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/jquery-match-height@0.7.2/dist/jquery.matchHeight.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.7.3/dist/Chart.bundle.min.js"></script>
+  <%= javascript_pack_tag "application" %>
   <script src="https://cdn.jsdelivr.net/npm/chartist@0.11.0/dist/chartist.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chartist-plugin-legend@0.6.2/chartist-plugin-legend.min.js"></script>
-
-  <script src="https://cdn.jsdelivr.net/npm/jquery.flot@0.8.3/jquery.flot.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/flot-pie@1.0.0/src/jquery.flot.pie.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/flot-spline@0.0.1/js/jquery.flot.spline.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/moment.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 </head>
 
 <body>
@@ -140,53 +129,52 @@
     function ContainerContent() {
         this.data = {}
         this.execute = function f() {
-           if (this.data.type === null){
-               $.ajax({
-                   url: this.data.type + "/index/",
-                   type: "GET",
-                   dataType: "html",
-                   beforeSend: function (){
-                       $(".dashboard_container.content").empty();
-                       $(".dashboard_container.content").html('<div class="d-flex justify-content-center"><div class="spinner-grow d-flex justify-content-between" role="status"><span class="visually-hidden">Loading...</span></div></div>')
-                   },
-                   success: function (data) {
-                       $(".dashboard_container.content").empty();
-                       $(".dashboard_container.content").append(data);
-                   },
-                   error: function (error) {
-                       console.error("Erro na chamada AJAX:", error);
-                   }
-               });
-           }else {
-               $.ajax({
-                   url: this.data.type + "/index",
-                   data: {course_id: this.data.id},
-                   type: "GET",
-                   dataType: "html",
-                   beforeSend: function (){
-                       $(".dashboard_container.content").empty();
-                       $(".dashboard_container.content").html('<div class="d-flex justify-content-center"><div class="spinner-grow d-flex justify-content-between" role="status"><span class="visually-hidden">Loading...</span></div></div>')
-                   },
-                   success: function (data) {
-                       $(".dashboard_container.content").empty();
-                       $(".dashboard_container.content").append(data)
+            if (this.data.type === null){
+                $.ajax({
+                    url: this.data.type + "/index/",
+                    type: "GET",
+                    dataType: "html",
+                    beforeSend: function (){
+                        $(".dashboard_container.content").empty();
+                        $(".dashboard_container.content").html('<div class="d-flex justify-content-center"><div class="spinner-grow d-flex justify-content-between" role="status"><span class="visually-hidden">Loading...</span></div></div>')
+                    },
+                    success: function (data) {
+                        $(".dashboard_container.content").empty();
+                        $(".dashboard_container.content").append(data);
+                    },
+                    error: function (error) {
+                        console.error("Erro na chamada AJAX:", error);
+                    }
+                });
+            }else {
+                $.ajax({
+                    url: this.data.type + "/index",
+                    data: {course_id: this.data.id},
+                    type: "GET",
+                    dataType: "html",
+                    beforeSend: function (){
+                        $(".dashboard_container.content").empty();
+                        $(".dashboard_container.content").html('<div class="d-flex justify-content-center"><div class="spinner-grow d-flex justify-content-between" role="status"><span class="visually-hidden">Loading...</span></div></div>')
+                    },
+                    success: function (data) {
+                        $(".dashboard_container.content").empty();
+                        $(".dashboard_container.content").append(data)
 
-                   },
-                   error: function (error) {
-                       console.error("Erro na chamada AJAX:", error);
-                   }
-               });
-           }
-       }
-       this.reload = function () {
-           this.execute();
-       }
+                    },
+                    error: function (error) {
+                        console.error("Erro na chamada AJAX:", error);
+                    }
+                });
+            }
+        }
+        this.reload = function () {
+            this.execute();
+        }
 
-  }
-  assyncContainer = new ContainerContent();
+    }
+    assyncContainer = new ContainerContent();
     $(".container_button").each(function () {
-        self = $(this);
-        self.click(function () {
+        $(this).click(function () {
             var type = $(this).data("type");
             assyncContainer.data.type = type;
             if ($(this).data("course-id") !== undefined) {
@@ -197,6 +185,23 @@
     });
     $(".container_button.active").trigger("click");
 
+    toastr.options = {
+        "closeButton": true,
+        "debug": false,
+        "newestOnTop": false,
+        "progressBar": false,
+        "positionClass": "toast-bottom-right",
+        "preventDuplicates": false,
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "500",
+        "timeOut": "5000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+    }
 </script>
 </body>
 </html>

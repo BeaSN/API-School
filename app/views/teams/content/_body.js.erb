@@ -14,6 +14,7 @@ tabs_content.each(function (){
     $(this).find(".student-widget").each(function (){
         $(this).click(function (){
             assyncContainer.reload();
+            toastr.success('Have fun storming the castle!', 'Miracle Max Says');
         })
     })
 })
