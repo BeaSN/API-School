@@ -3,4 +3,5 @@ class School::Entities::Institution < Grape::Entity
   expose :address
   expose :phone
   expose :courses, :using => "School::Entities::Course"
+  expose :id
 end

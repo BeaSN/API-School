@@ -2,6 +2,20 @@
   width: 40px !important;
 }
 
+   .fa-user-plus {
+  color: aliceblue !important;
+     cursor: pointer;
+  &:hover{
+    color: #6cfc66 !important;
+  }
+}
+
+.card-header {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+}
+
 .row-widget {
   .actions-buttom {
     width: 40px !important;
@@ -14,4 +28,8 @@
       color: #ad0312;
     }
   }
+  .fa fa-plus-square {
+    width: 100% !important;
+  }
 }
+

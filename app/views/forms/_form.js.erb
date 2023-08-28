@@ -1,0 +1,29 @@
+var modal_form = $(".modal.fade")
+var form = modal_form.find("form");
+var button = modal_form.find(".button-save")
+var isRequestInProgress = false;
+button.click(function (e) {
+    e.preventDefault();
+    if (isRequestInProgress) {
+        return;
+    }
+    $.ajax({
+        type: $(this).parent().parent().find("form").attr("method"),
+        url: $(this).parent().parent().find("form").attr("action"),
+        data: $(this).parent().parent().find("form").serialize(),
+        success: function (data) {
+            toastr.success(data[0].content, data[0].title)
+            assyncContainer.reload();
+            modal_form.modal("hide")
+        },
+        error: function (data) {
+            $.each(data.responseJSON.error[0].errors,function (index, value){
+                toastr.error(value, data.responseJSON.error[0].title)
+            })
+        },
+        complete: function() {
+            isRequestInProgress = false;
+        }
+    })
+    isRequestInProgress = true;
+})

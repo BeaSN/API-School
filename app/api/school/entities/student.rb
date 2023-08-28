@@ -4,4 +4,5 @@ class School::Entities::Student < Grape::Entity
   expose :email
   expose :password
   expose :birthday
+  expose :id
 end

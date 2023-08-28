@@ -4,7 +4,7 @@ class School::V1::Quizzes < Grape::API
     params do
       requires :name, type: String
       requires :description, type: String
-      requires :course_id, type: Integer
+      requires :team_id, type: Integer
     end
 
     post "", http_codes: [
@@ -37,7 +37,7 @@ class School::V1::Quizzes < Grape::API
       requires :id, type: Integer
       optional :name, type: String
       optional :description, type: String
-      optional :course_id, type: Integer
+      optional :team_id, type: Integer
     end
 
     put "", http_codes: [

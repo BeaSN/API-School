@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   match "/create", to: "sessions#create", via: [:get, :post]
   get "/signup", to: "sessions#signup"
   get "homepage/index", to: "homepage#index"
+  resources :students
+  resources :quizzes
 
   resources :dashboard, format: [:html, :js]
   get "teams/index", to: "teams#index"

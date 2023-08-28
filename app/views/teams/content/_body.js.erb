@@ -1,3 +1,5 @@
+<%= render partial: "forms/form", format: :js %>
+
 var tabs = $(".nav.nav-tabs")
 var color = tabs.data("color")
 var color_active = tabs.data("color-active")
@@ -10,12 +12,68 @@ tabs.find(".nav-link").each(function (){
     })
 })
 var tabs_content = $(".tab-content")
+var modal = $(".modal.fade")
 tabs_content.each(function (){
-    $(this).find(".student-widget").each(function (){
-        $(this).click(function (){
-            assyncContainer.reload();
-            toastr.success('Have fun storming the castle!', 'Miracle Max Says');
-        })
+    $(this).find(".add-buttom").click(function (){
+        var type = $(this).data("type")
+        var relation_id = $(this).data("relation-id")
+        $.ajax({
+            url: type + "/new/",
+            data: {relation_id: relation_id},
+            type: "GET",
+            dataType: "html",
+            success: function (data) {
+                modal.find(".modal-body").empty();
+                modal.find(".modal-body").append(data);
+                modal.modal("show");
+            },
+            error: function (error) {
+                toastr.error('Erro na requisição ajax', error);
+            }
+        });
+    })
+
+    $(this).find(".edit-buttom").click(function (){
+        var type = $(this).data("type")
+        var id = $(this).data("id")
+        $.ajax({
+            url: type + "/" + id + "/edit",
+            data: {id: id},
+            type: "GET",
+            dataType: "html",
+            success: function (data) {
+                modal.find(".modal-body").empty();
+                modal.find(".modal-body").append(data);
+                modal.modal("show");
+            },
+            error: function (error) {
+                toastr.error('Erro na requisição ajax', error);
+            }
+        });
+    })
+
+    $(this).find(".delete-buttom").click(function (){
+        var type = $(this).data("type")
+        var id = $(this).data("id")
+        $.ajax({
+            url: type + "/" + id,
+            data: {id: id},
+            type: "DELETE",
+            dataType: "html",
+            beforeSend: function (xhr){
+                xhr.setRequestHeader("X-CSRF-Token", $("meta[name='csrf-token']").attr("content"))
+            },
+                success: function (data) {
+                    assyncContainer.reload();
+                    toastr.success('Excluído com sucesso', "Success");
+                },
+                error: function (error) {
+                    toastr.error('Erro na requisição ajax', "Error");
+                }
+            });
+    })
+    modal.on('hidden.bs.modal', function (e){
+        $(this).find(".modal-body").empty();
     })
 })
 

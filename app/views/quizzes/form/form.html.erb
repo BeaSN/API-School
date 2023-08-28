@@ -1,0 +1,17 @@
+<div class="form-title"><%= @action == "create" ? "Add" : "Edit" %> Quiz</div>
+<%= form_for @quiz,url: {action: "#{@action}"}, id: "quiz-form" do |f| %>
+  <div class="quiz-form">
+
+    <% if @quiz.id.present? %>
+      <%= f.hidden_field :id, value: @quiz.id, id: "id", require: true %>
+    <% end %>
+    <%= f.hidden_field :team_id, value: @quiz.team_id, id: "team_id", require: true %>
+    <label class="form-label" for="name">Name: </label>
+    <%= f.text_field :name, value: @quiz.name, class: "form-control", id: "name", require: true %>
+
+    <label class="form-label" for="description">Description: </label>
+    <%= f.text_area :description, value: @quiz.description, class: "form-control", id: "description", require: true %>
+    <br>
+  </div>
+
+<% end %>

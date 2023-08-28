@@ -12,7 +12,7 @@ class TeamsController < ApplicationController
   private
 
   def connection_api
-    base_url = "#{root_url}/api/school/v1/teams"
+    base_url = "#{root_url}api/school/v1/teams"
     @connection = Faraday.new(url: base_url)
   end
 end

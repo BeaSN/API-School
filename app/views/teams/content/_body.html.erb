@@ -76,7 +76,7 @@
 </div>
 
 <div class="row mt-4">
-  <ul class="nav nav-tabs" data-color="<%= @teams.first["institution"]["color_3"] %>" data-color-active="<%= @teams.first["institution"]["color_1"] %>" id="myTab" role="tablist">
+  <ul class="nav nav-tabs team-widget row-widget" data-color="<%= @teams.first["institution"]["color_3"] %>" data-color-active="<%= @teams.first["institution"]["color_1"] %>" id="myTab" role="tablist">
     <% @teams.each do |team| %>
       <li class="nav-item" role="presentation">
         <a class="nav-link
@@ -84,6 +84,7 @@
           <% end %>" id="<%= "#{team["name"].gsub(" ", "_")}_#{team["id"]}" %>-tab" data-bs-toggle="tab" href='<%= "##{team["name"].gsub(" ", "_")}_#{team["id"]}" %>' role="tab" aria-controls="<%= "#{team["name"].gsub(" ", "_")}_#{team["id"]}" %>" aria-selected="<%= @teams.first["id"] == team["id"] ? "true" : "false" %>"><%= team["name"] %></a>
       </li>
     <% end %>
+    <i class="icon fa fa-plus-square add-teams-buttom actions-teams-buttom" data-type="teams"></i>
   </ul>
   <div class="tab-content" id="myTabContent">
     <% @teams.each do |team| %>
@@ -93,11 +94,11 @@
         <div class="row mt-3">
           <div class="animated fadeIn">
             <div class="row">
-
               <div class="col-md-12">
                 <div class="card">
                   <div class="card-header" style="background-color: <%= @teams.first["institution"]["color_4"] %>">
                     <strong class="card-title">Students</strong>
+                    <i class="icon fa fa-user-plus add-buttom actions-buttom" data-type="students" data-relation-id="<%= team["id"] %>"></i>
                   </div>
                   <div class="card-body">
                     <table id="bootstrap-data-table" class="table table-striped table-bordered">
@@ -116,8 +117,8 @@
                           <td><%= student["name"] %></td>
                           <td><%= student["email"] %></td>
                           <td><%= student["birthday"].to_date.strftime("%d/%m/%Y") %></td>
-                          <td class="edit-buttom actions-buttom"><i class="icon ti-pencil-alt"></i></td>
-                          <td class="delete-buttom actions-buttom"><i class="icon ti-trash"></i></td>
+                          <td class="edit-buttom actions-buttom" data-type="students" data-id="<%= student["id"] %>"><i class="icon ti-pencil-alt"></i></td>
+                          <td class="delete-buttom actions-buttom" data-type="students" data-id="<%= student["id"] %>"><i class="icon ti-trash"></i></td>
                         </tr>
                       <% end %>
                       </tbody>
@@ -129,6 +130,7 @@
                 <div class="card">
                   <div class="card-header" style="background-color: <%= @teams.first["institution"]["color_4"] %>">
                     <strong class="card-title">Quizzes</strong>
+                    <i class="icon fa fa-user-plus add-buttom actions-buttom" data-type="quizzes" data-relation-id="<%= team["id"] %>"></i>
                   </div>
                   <div class="card-body">
                     <table id="bootstrap-data-table" class="table table-striped table-bordered">
@@ -136,13 +138,17 @@
                       <tr>
                         <th>Name</th>
                         <th>Description</th>
+                        <th class="action-col"></th>
+                        <th class="action-col"></th>
                       </tr>
                       </thead>
                       <tbody>
                       <% team["quizzes"].each do |quiz| %>
-                        <tr>
+                        <tr class="quiz-widget row-widget">
                           <td><%= quiz["name"] %></td>
                           <td><%= quiz["description"] %></td>
+                          <td class="edit-buttom actions-buttom" data-type="quizzes" data-id="<%= quiz["id"] %>"><i class="icon ti-pencil-alt"></i></td>
+                          <td class="delete-buttom actions-buttom" data-type="quizzes" data-id="<%= quiz["id"] %>"><i class="icon ti-trash"></i></td>
                         </tr>
                       <% end %>
                       </tbody>

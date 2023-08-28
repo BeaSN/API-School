@@ -1,4 +1,4 @@
-class StudentsController < ApplicationController
+class QuizzesController < ApplicationController
   before_action :connection_api
   layout "container"
 
@@ -8,23 +8,24 @@ class StudentsController < ApplicationController
   end
 
   def new
-    @student = Student.new
+    @quiz = Quiz.new
     team = Team.find(params[:relation_id])
-    @student.team_id = team.id
+    @quiz.team_id = team.id
     @action = "create"
-    render "students/form/form"
+    render "quizzes/form/form"
   end
 
   def edit
-    @student = Student.find(params[:id])
+    @quiz = Quiz.find(params[:id])
     @action = "update"
-    render "students/form/form"
+    render "quizzes/form/form"
   end
 
+
   def create
-    response = @connection.post("create", JSON.parse(params[:student].to_json))
+    response = @connection.post("create", JSON.parse(params[:quiz].to_json))
     if response.success?
-      render json: [title: "Success", content: "Student Created"]
+      render json: [title: "Success", content: "Quiz Created"]
     else
       error = JSON.parse(response.body)["error"].split("<br/>").first
       arr = error.split(":")
@@ -36,9 +37,9 @@ class StudentsController < ApplicationController
   end
 
   def update
-    response = @connection.put("update", JSON.parse(params[:student].to_json))
+    response = @connection.put("update", JSON.parse(params[:quiz].to_json))
     if response.success?
-      render json: [title: "Success", content: "Student Updated"]
+      render json: [title: "Success", content: "Quiz Updated"]
     else
       error = JSON.parse(response.body)["error"].split("<br/>").first
       arr = error.split(":")
@@ -52,7 +53,7 @@ class StudentsController < ApplicationController
   private
 
   def connection_api
-    base_url = "#{root_url}api/school/v1/students"
+    base_url = "#{root_url}api/school/v1/quizzes"
     @connection = Faraday.new(url: base_url)
   end
 end
