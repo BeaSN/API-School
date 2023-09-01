@@ -1822,11 +1822,11 @@ header .form-inline .search-form.close {
 }
 
 .card .card-left {
-    width: 60%;
+    width: fit-content;
 }
 
 .card .card-right {
-    width: 40%;
+    width: fit-content;
 }
 
 .card .card-body {

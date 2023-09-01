@@ -9,6 +9,12 @@ class TeamsController < ApplicationController
     render "body"
   end
 
+  def edit
+    @team = Team.find(params[:id])
+    @action = "update"
+    render "teams/form/form"
+  end
+
   private
 
   def connection_api

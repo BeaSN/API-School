@@ -1,6 +1,7 @@
 <%= render partial: "forms/form", format: :js %>
 
 var tabs = $(".nav.nav-tabs")
+var tabs_conteiner = $(".tabs-container")
 var color = tabs.data("color")
 var color_active = tabs.data("color-active")
 tabs.find(".nav-link").css("background-color", color)
@@ -11,6 +12,25 @@ tabs.find(".nav-link").each(function (){
         $(this).css("background-color", color_active)
     })
 })
+
+tabs_conteiner.find(".icon-add-team").css("background-color", color_active)
+
+var nav_item = tabs.find(".nav-item");
+var arrastando = true;
+var inicioX;
+
+tabs.on('mousedown', function(evento) {
+    arrastando = true;
+    inicioX = evento.pageX - tabs.scrollLeft();
+});
+
+tabs.on('mousemove', function(evento) {
+    if (!arrastando) return;
+    const deslocamentoX = evento.pageX - inicioX;
+    tabs.scrollLeft(deslocamentoX);
+});
+
+
 var tabs_content = $(".tab-content")
 var modal = $(".modal.fade")
 tabs_content.each(function (){

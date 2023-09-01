@@ -1,12 +1,11 @@
 <div class="animated fadeIn">
   <!-- Widgets  -->
   <div class="row">
-    <div class="col-sm-6 col-lg-3">
+    <div class="col-sm-12 col-lg-6 col-xxl-3">
       <div class="card text-white" style="background-color: <%= @teams.first["institution"]["color_1"] %>">
         <div class="card-body d-flex justify-content-between">
           <div class="card-left pt-1 float-left">
             <h3 class="mb-0 fw-r">
-              <span class="currency float-left mr-1"></span>
               <span class="date"><%= @teams.first["institution"]["name"] %></span>
             </h3>
             <p class="text-light mt-1 m-0">Institution</p>
@@ -20,7 +19,7 @@
     </div>
     <!--/.col-->
 
-    <div class="col-sm-6 col-lg-3">
+    <div class="col-sm-12 col-lg-6 col-xxl-3">
       <div class="card text-white" style="background-color: <%= @teams.first["institution"]["color_2"] %>">
         <div class="card-body d-flex justify-content-between">
           <div class="card-left pt-1 float-left">
@@ -38,7 +37,7 @@
     </div>
     <!--/.col-->
 
-    <div class="col-sm-6 col-lg-3">
+    <div class="col-sm-12 col-lg-6 col-xxl-3">
       <div class="card text-white" style="background-color: <%= @teams.first["institution"]["color_3"] %>">
         <div class="card-body d-flex justify-content-between">
           <div class="card-left pt-1 float-left">
@@ -56,7 +55,7 @@
     </div>
     <!--/.col-->
 
-    <div class="col-sm-6 col-lg-3">
+    <div class="col-sm-12 col-lg-6 col-xxl-3">
       <div class="card text-white" style="background-color: <%= @teams.first["institution"]["color_4"] %>">
         <div class="card-body d-flex justify-content-between">
           <div class="card-left pt-1 float-left">
@@ -76,16 +75,21 @@
 </div>
 
 <div class="row mt-4">
+  <div class="tabs-container">
   <ul class="nav nav-tabs team-widget row-widget" data-color="<%= @teams.first["institution"]["color_3"] %>" data-color-active="<%= @teams.first["institution"]["color_1"] %>" id="myTab" role="tablist">
     <% @teams.each do |team| %>
       <li class="nav-item" role="presentation">
         <a class="nav-link
           <% if @teams.first["id"] == team["id"] %>active
-          <% end %>" id="<%= "#{team["name"].gsub(" ", "_")}_#{team["id"]}" %>-tab" data-bs-toggle="tab" href='<%= "##{team["name"].gsub(" ", "_")}_#{team["id"]}" %>' role="tab" aria-controls="<%= "#{team["name"].gsub(" ", "_")}_#{team["id"]}" %>" aria-selected="<%= @teams.first["id"] == team["id"] ? "true" : "false" %>"><%= team["name"] %></a>
+          <% end %>" id="<%= "#{team["name"].gsub(" ", "_")}_#{team["id"]}" %>-tab" data-bs-toggle="tab" href='<%= "##{team["name"].gsub(" ", "_")}_#{team["id"]}" %>' role="tab" aria-controls="<%= "#{team["name"].gsub(" ", "_")}_#{team["id"]}" %>" aria-selected="<%= @teams.first["id"] == team["id"] ? "true" : "false" %>">
+          <div class="tab-title"><%= team["name"] %></div>
+          <i class="icon-edit-team ti-pencil-alt edit-team-buttom actions-buttom"></i>
+        </a>
       </li>
     <% end %>
-    <i class="icon fa fa-plus-square add-teams-buttom actions-teams-buttom" data-type="teams"></i>
   </ul>
+  <i class="icon-add-team ti-plus add-team-buttom actions-buttom"></i>
+  </div>
   <div class="tab-content" id="myTabContent">
     <% @teams.each do |team| %>
       <div class="tab-pane fade
