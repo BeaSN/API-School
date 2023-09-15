@@ -1,6 +1,6 @@
-<div class="form-title"><%= @action == "create" ? "Add" : "Edit" %> Quiz</div>
+<div class="form-title"><%= @action == "create" ? "Add" : "Edit" %> Team</div>
 <%= form_for @team,url: {action: "#{@action}"}, id: "team-form" do |f| %>
-  <div class="quiz-form">
+  <div class="team-form">
 
     <% if @team.id.present? %>
       <%= f.hidden_field :id, value: @team.id, id: "id", require: true %>

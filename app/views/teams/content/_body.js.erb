@@ -14,6 +14,7 @@ tabs.find(".nav-link").each(function (){
 })
 
 tabs_conteiner.find(".icon-add-team").css("background-color", color_active)
+tabs_conteiner.find(".icon-delete-team").css("background-color", color_active)
 
 var nav_item = tabs.find(".nav-item");
 var arrastando = true;
@@ -31,10 +32,10 @@ tabs.on('mousemove', function(evento) {
 });
 
 
-var tabs_content = $(".tab-content")
+var tabs_cards_body = $(".tabs-cards-body")
 var modal = $(".modal.fade")
-tabs_content.each(function (){
-    $(this).find(".add-buttom").click(function (){
+tabs_cards_body.each(function (){
+    $(this).find(".buttom-add").click(function (){
         var type = $(this).data("type")
         var relation_id = $(this).data("relation-id")
         $.ajax({
@@ -53,7 +54,7 @@ tabs_content.each(function (){
         });
     })
 
-    $(this).find(".edit-buttom").click(function (){
+    $(this).find(".buttom-edit").click(function (){
         var type = $(this).data("type")
         var id = $(this).data("id")
         $.ajax({
@@ -72,7 +73,7 @@ tabs_content.each(function (){
         });
     })
 
-    $(this).find(".delete-buttom").click(function (){
+    $(this).find(".buttom-delete").click(function (){
         var type = $(this).data("type")
         var id = $(this).data("id")
         $.ajax({
@@ -92,6 +93,31 @@ tabs_content.each(function (){
                 }
             });
     })
+
+    $(this).find(".buttom-delete-team").click(function (){
+        var tab_active = $(".nav-link.active")
+        var type = tab_active.data("type")
+        var id = tab_active.data("id")
+        $.ajax({
+            url: type + "/" + id,
+            data: {id: id},
+            type: "DELETE",
+            dataType: "html",
+            beforeSend: function (xhr){
+                xhr.setRequestHeader("X-CSRF-Token", $("meta[name='csrf-token']").attr("content"))
+            },
+            success: function (data) {
+                assyncContainer.reload();
+                toastr.success('Excluído com sucesso', "Success");
+            },
+            error: function (error) {
+                toastr.error('Erro na requisição ajax', "Error");
+            }
+        });
+    })
+
+
+
     modal.on('hidden.bs.modal', function (e){
         $(this).find(".modal-body").empty();
     })

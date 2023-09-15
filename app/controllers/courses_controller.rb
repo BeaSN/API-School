@@ -1,33 +1,33 @@
 # frozen_string_literal: true
-class TeamsController < ApplicationController
+class CoursesController < ApplicationController
   layout "container"
   before_action :connection_api
 
   def index
-    response = @connection.get("get_teams_by_course_id", { course_id: params[:course_id].to_i })
-    @course = Course.find(params[:course_id])
-    @teams = JSON.parse(response.body)
+    response = @connection.get("get_courses_by_institution_id", { institution_id: params[:institution_id].to_i })
+    @institution = Institution.find(params[:institution_id])
+    @courses = JSON.parse(response.body)
     render "body"
   end
 
   def new
-    @team = Team.new
-    course = Course.find(params[:relation_id])
-    @team.course_id = course.id
+    @course = Course.new
+    institution = Institution.find(params[:relation_id])
+    @team.institution_id = institution.id
     @action = "create"
-    render "teams/form/form"
+    render "courses/form/form"
   end
 
   def edit
-    @team = Team.find(params[:id])
+    @course = Course.find(params[:id])
     @action = "update"
-    render "teams/form/form"
+    render "courses/form/form"
   end
 
   def create
-    response = @connection.post("create", JSON.parse(params[:team].to_json))
+    response = @connection.post("create", JSON.parse(params[:course].to_json))
     if response.success?
-      render json: [title: "Success", content: "Team Created"]
+      render json: [title: "Success", content: "Course Created"]
     else
       error = JSON.parse(response.body)["error"].split("<br/>").first
       arr = error.split(":")
@@ -39,9 +39,9 @@ class TeamsController < ApplicationController
   end
 
   def update
-    response = @connection.put("update", JSON.parse(params[:team].to_json))
+    response = @connection.put("update", JSON.parse(params[:course].to_json))
     if response.success?
-      render json: [title: "Success", content: "Team Updated"]
+      render json: [title: "Success", content: "Course Updated"]
     else
       error = JSON.parse(response.body)["error"].split("<br/>").first
       arr = error.split(":")
@@ -60,7 +60,7 @@ class TeamsController < ApplicationController
   private
 
   def connection_api
-    base_url = "#{root_url}api/school/v1/teams"
+    base_url = "#{root_url}api/school/v1/courses"
     @connection = Faraday.new(url: base_url)
   end
 end

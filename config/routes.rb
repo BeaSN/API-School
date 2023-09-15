@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   get "homepage/index", to: "homepage#index"
   resources :students
   resources :quizzes
+  resources :teams, except: [:index, :show]
+  resources :courses
 
   resources :dashboard, format: [:html, :js]
   get "teams/index", to: "teams#index"

@@ -36,4 +36,20 @@
     }
   }
 
-}*/
+}*
+ */
+
+.buttons-card {
+  display: grid;
+  cursor: pointer !important;
+  .ti-plus {
+    font-weight: bold !important;
+  }
+  .ti-trash {
+    padding-top: 30px !important;
+  }
+}
+
+.row {
+  max-width: calc(100vw - 25px - 280px - 1.875rem);
+}
