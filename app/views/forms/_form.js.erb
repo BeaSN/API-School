@@ -13,7 +13,11 @@ button.click(function (e) {
         data: $(this).parent().parent().find("form").serialize(),
         success: function (data) {
             toastr.success(data[0].content, data[0].title)
-            assyncContainer.reload();
+            if (form.hasClass("reload-window-form")) {
+                location.reload();
+            } else {
+                assyncContainer.reload();
+            }
             modal_form.modal("hide")
         },
         error: function (data) {

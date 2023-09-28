@@ -1,7 +1,7 @@
 class InstitutionService
   class << self
     def create_institution(params)
-      institution = Institution.create(name: params[:name], address: params[:address], phone: params[:phone])
+      institution = Institution.create(name: params[:name], address: params[:address], phone: params[:phone], color_1: params[:color_1], color_2: params[:color_2], color_3: params[:color_3], color_4: params[:color_4])
       School::Entities::Institution.represent(institution)
     end
 
@@ -16,7 +16,11 @@ class InstitutionService
       institution.name = params[:name] if params[:name].present?
       institution.address = params[:address] if params[:address].present?
       institution.phone = params[:phone] if params[:phone].present?
-      course.save
+      institution.color_1 = params[:color_1] if params[:color_1].present?
+      institution.color_2 = params[:color_2] if params[:color_2].present?
+      institution.color_3 = params[:color_3] if params[:color_3].present?
+      institution.color_4 = params[:color_4] if params[:color_4].present?
+      institution.save
       School::Entities::Institution.represent(institution)
     end
 

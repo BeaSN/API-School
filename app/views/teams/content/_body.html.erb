@@ -2,21 +2,23 @@
   <!-- Widgets  -->
   <div class="row tabs-cards-body">
     <div class="col-sm-12 col-lg-6 col-xxl-3">
-      <div class="card text-white" style="background-color: <%= @teams.first["institution"]["color_1"] %>">
+      <div class="card text-white" style="background-color: <%= institution.color_1 %>">
         <div class="card-body d-flex justify-content-between">
           <div class="card-left pt-1 float-left">
             <h3 class="mb-0 fw-r">
-              <span class="date"><%= @teams.first["institution"]["name"] %></span>
+              <span class="date"><%= institution.name %></span>
             </h3>
             <p class="text-light mt-1 m-0">Institution</p>
           </div><!-- /.card-left -->
 
-          <div class="card-right float-right text-end">
+          <div class="card-right cards-courses float-right text-end">
             <i class="icon fade-5 icon-lg pe-7s-culture"></i>
           </div><!-- /.card-right -->
           <div class="buttons-card">
-            <i class="icon-edit-institution ti-pencil-alt edit-institution-buttom actions-buttom buttom-edit"></i>
-            <i class="icon-delete-institution ti-trash delete-institution-buttom actions-buttom buttom-delete"></i>
+            <i class="icon-edit-institution ti-pencil-alt edit-institution-buttom actions-buttom buttom-edit"
+               data-type="institutions" data-id="<%= institution.id %>"></i>
+            <i class="icon-delete-institution ti-trash delete-institution-buttom actions-buttom buttom-delete"
+               data-type="institutions" data-id="<%= institution.id %>"></i>
           </div>
         </div>
       </div>
@@ -24,21 +26,23 @@
     <!--/.col-->
 
     <div class="col-sm-12 col-lg-6 col-xxl-3">
-      <div class="card text-white" style="background-color: <%= @teams.first["institution"]["color_2"] %>">
+      <div class="card text-white" style="background-color: <%= institution.color_2 %>">
         <div class="card-body d-flex justify-content-between">
           <div class="card-left pt-1 float-left">
             <h3 class="mb-0 fw-r">
-              <span class="count float-left"><%= @teams.first["course"]["name"] %></span>
+              <span class="count float-left"><%= course.name %></span>
             </h3>
             <p class="text-light mt-1 m-0">Course</p>
           </div><!-- /.card-left -->
 
-          <div class="card-right float-right text-end">
+          <div class="card-right cards-courses float-right text-end">
             <i class="icon fade-5 icon-lg pe-7s-notebook"></i>
           </div><!-- /.card-right -->
           <div class="buttons-card">
-            <i class="icon-edit-course ti-pencil-alt edit-course-buttom actions-buttom buttom-edit" data-type="courses" data-id="<%= @course.id %>"></i>
-            <i class="icon-delete-course ti-trash delete-course-buttom actions-buttom buttom-delete" data-type="courses" data-id="<%= @course.id %>"></i>
+            <i class="icon-edit-course ti-pencil-alt edit-course-buttom actions-buttom buttom-edit"
+               data-type="courses" data-id="<%= course.id %>"></i>
+            <i class="icon-delete-course ti-trash delete-course-buttom actions-buttom buttom-delete"
+               data-type="courses" data-id="<%= course.id %>"></i>
           </div>
         </div>
       </div>
@@ -46,11 +50,11 @@
     <!--/.col-->
 
     <div class="col-sm-12 col-lg-6 col-xxl-3">
-      <div class="card text-white" style="background-color: <%= @teams.first["institution"]["color_3"] %>">
+      <div class="card text-white" style="background-color: <%= institution.color_3 %>">
         <div class="card-body d-flex justify-content-between">
           <div class="card-left pt-1 float-left">
             <h3 class="mb-0 fw-r">
-              <span class="count"><%= @teams.sum { |team| team["students"].count } %></span>
+              <span class="count"><%= teams.count > 0 ? teams.sum { |team| team["students"].count } : 0 %></span>
             </h3>
             <p class="text-light mt-1 m-0">Students</p>
           </div><!-- /.card-left -->
@@ -64,11 +68,11 @@
     <!--/.col-->
 
     <div class="col-sm-12 col-lg-6 col-xxl-3">
-      <div class="card text-white" style="background-color: <%= @teams.first["institution"]["color_4"] %>">
+      <div class="card text-white" style="background-color: <%= institution.color_4 %>">
         <div class="card-body d-flex justify-content-between">
           <div class="card-left pt-1 float-left">
             <h3 class="mb-0 fw-r">
-              <span class="count"><%= @teams.count %></span>
+              <span class="count"><%= teams.count %></span>
             </h3>
             <p class="text-light mt-1 m-0">Teams</p>
           </div><!-- /.card-left -->
@@ -84,11 +88,11 @@
 
 <div class="row mt-4 tabs-cards-body">
   <div class="tabs-container">
-  <ul class="nav nav-tabs team-widget row-widget" data-color="<%= @teams.first["institution"]["color_3"] %>" data-color-active="<%= @teams.first["institution"]["color_1"] %>" id="myTab" role="tablist">
-    <% @teams.each do |team| %>
+  <ul class="nav nav-tabs team-widget row-widget" data-color="<%= institution.color_3 %>" data-color-active="<%= institution.color_1 %>" id="myTab" role="tablist">
+    <% teams.each do |team| %>
       <li class="nav-item" role="presentation">
         <a class="nav-link
-          <% if @teams.first["id"] == team["id"] %>active
+          <% if teams.first["id"] == team["id"] %>active
           <% end %>" id="<%= "#{team["name"].gsub(" ", "_")}_#{team["id"]}" %>-tab" data-bs-toggle="tab" href='<%= "##{team["name"].gsub(" ", "_")}_#{team["id"]}" %>' role="tab" aria-controls="<%= "#{team["name"].gsub(" ", "_")}_#{team["id"]}" %>" aria-selected="<%= @teams.first["id"] == team["id"] ? "true" : "false" %>"
         data-type="teams" data-id="<%= team["id"] %>">
           <div class="tab-title"><%= team["name"] %></div>
@@ -98,14 +102,16 @@
     <% end %>
   </ul>
     <div class="buttons-teams">
-  <i class="icon-add-team ti-plus add-team-buttom actions-buttom buttom-add" data-type="teams" data-relation-id="<%= @course.id %>"></i>
-    <i class="icon-delete-team ti-trash delete-team-buttom actions-buttom buttom-delete-team" data-type="teams" data-relation-id="<%= @course.id %>"></i>
+  <i class="icon-add-team ti-plus add-team-buttom actions-buttom buttom-add"
+     data-type="teams" data-relation-id="<%= course.id %>"></i>
+    <i class="icon-delete-team ti-trash delete-team-buttom actions-buttom buttom-delete-team"
+       data-type="teams" data-relation-id="<%= course.id %>"></i>
     </div>
   </div>
   <div class="tab-content" id="myTabContent">
-    <% @teams.each do |team| %>
+    <% teams.each do |team| %>
       <div class="tab-pane fade
-        <% if @teams.first["id"] == team["id"] %>show active
+        <% if teams.first["id"] == team["id"] %>show active
         <% end %>" id="<%= "#{team["name"].gsub(" ", "_")}_#{team["id"]}" %>" role="tabpanel" aria-labelledby="<%= "#{team["name"].gsub(" ", "_")}_#{team["id"]}" %>-tab">
         <div class="row mt-3">
           <div class="animated fadeIn">

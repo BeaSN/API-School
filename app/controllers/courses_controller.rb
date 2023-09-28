@@ -12,10 +12,9 @@ class CoursesController < ApplicationController
 
   def new
     @course = Course.new
-    institution = Institution.find(params[:relation_id])
-    @team.institution_id = institution.id
+    @institutions = Institution.all
     @action = "create"
-    render "courses/form/form"
+    render "courses/form/new"
   end
 
   def edit

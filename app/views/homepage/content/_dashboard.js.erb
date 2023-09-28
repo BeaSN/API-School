@@ -1,4 +1,6 @@
-    if ($('#traffic-chart').length) {
+<%= render partial: "forms/form", format: :js %>
+
+if ($('#traffic-chart').length) {
         var chart = new Chartist.Line('#traffic-chart', {
             labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
             series: [
@@ -79,3 +81,23 @@
         });
     }
 
+    var tabs_cards_body = $(".tabs-cards-body")
+    var modal = $(".modal.fade")
+    tabs_cards_body.each(function () {
+        $(this).find(".buttom-add").click(function () {
+            var type = $(this).data("type")
+            $.ajax({
+                url: type + "/new/",
+                type: "GET",
+                dataType: "html",
+                success: function (data) {
+                    modal.find(".modal-body").empty();
+                    modal.find(".modal-body").append(data);
+                    modal.modal("show");
+                },
+                error: function (error) {
+                    toastr.error('Erro na requisição ajax', error);
+                }
+            });
+        })
+    })

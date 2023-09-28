@@ -4,7 +4,11 @@ class School::V1::Institutions < Grape::API
     params do
       requires :name, type: String
       requires :address, type: String
-      requires :phone, type: Integer
+      requires :phone, type: String
+      requires :color_1, type:String
+      requires :color_2, type:String
+      requires :color_3, type:String
+      requires :color_4, type:String
     end
 
     post "", http_codes: [
@@ -37,7 +41,11 @@ class School::V1::Institutions < Grape::API
       requires :id, type: Integer
       optional :name, type: String
       optional :address, type: String
-      optional :phone, type: Integer
+      optional :phone, type: String
+      optional :color_1, type:String
+      optional :color_2, type:String
+      optional :color_3, type:String
+      optional :color_4, type:String
     end
 
     put "", http_codes: [

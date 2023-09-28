@@ -8,6 +8,7 @@ class School::Entities::Team < Grape::Entity
   expose :quizzes, :using => "School::Entities::Quiz"
 
   class Institution < Grape::Entity
+    expose :id
     expose :name
     expose :address
     expose :phone

@@ -6,6 +6,7 @@ class TeamsController < ApplicationController
   def index
     response = @connection.get("get_teams_by_course_id", { course_id: params[:course_id].to_i })
     @course = Course.find(params[:course_id])
+    @institution = @course.institution
     @teams = JSON.parse(response.body)
     render "body"
   end

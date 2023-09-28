@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   resources :quizzes
   resources :teams, except: [:index, :show]
   resources :courses
+  resources :institutions, except: [:show]
 
   resources :dashboard, format: [:html, :js]
   get "teams/index", to: "teams#index"
